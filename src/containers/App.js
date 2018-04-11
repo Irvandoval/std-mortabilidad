@@ -10,13 +10,19 @@ import React, {
 } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { githubUserFetch } from '../actions/';
+import * as actionsDef from '../actions/';
+
 import Main from '../components/App';
 /* Populated by react-webpack-redux:reducer */
 class App extends Component {
   render() {
-    const {actions, user} = this.props;
-    return <Main actions={actions} user={user} />;
+    const {actions, departamentos, establecimientos, clasePartos} = this.props;
+    return (<Main
+      actions={actions}
+      departamentos={departamentos}
+      establecimientos={establecimientos}
+      clasePartos={clasePartos}
+      />);
   }
 }
 /* Populated by react-webpack-redux:reducer
@@ -25,20 +31,26 @@ class App extends Component {
  *       adjust it here.
  */
 App.propTypes = {
-  actions: PropTypes.shape({ githubUserFetch: PropTypes.func.isRequired }),
-  user: PropTypes.shape({})
+  actions: PropTypes.shape({ getDepartamentos: PropTypes.func.isRequired }),
+  departamentos: PropTypes.arrayOf(PropTypes.object),
+  establecimientos: PropTypes.arrayOf(PropTypes.object),
+  clasePartos: PropTypes.arrayOf(PropTypes.object),
 };
+
 function mapStateToProps(state) {
   // eslint-disable-line no-unused-vars
   /* Populated by react-webpack-redux:reducer */
+  console.log(state)
   const props = {
-    user: state.user
+    departamentos: state.departamentos,
+    establecimientos: state.establecimientos,
+    clasePartos: state.clasePartos,
   };
   return props;
 }
 function mapDispatchToProps(dispatch) {
   /* Populated by react-webpack-redux:action */
-  const actions = { githubUserFetch };
+  const actions = actionsDef;
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
 }

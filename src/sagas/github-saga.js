@@ -11,7 +11,6 @@ function getGitHubUser(username) {
 
 function* fetchGitHubUser({ username }) {
   const result = yield call(getGitHubUser, username);
-  console.log(result);
   yield put({type: 'GITHUB_USER_FETCH_DONE', result: result.body});
 }
 

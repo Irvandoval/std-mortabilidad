@@ -9,7 +9,10 @@
  */
 /* Populated by react-webpack-redux:reducer */
 import { combineReducers } from 'redux';
-import user from '../reducers/githubUser.js';
-const reducers = { user };
+import departamentos from '../reducers/departamentos';
+import establecimientos from '../reducers/establecimientos';
+import clasePartos from '../reducers/clasePartos';
+
+const reducers = { departamentos, establecimientos, clasePartos};
 const combined = combineReducers(reducers);
 module.exports = combined;

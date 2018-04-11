@@ -1,3 +1,9 @@
 /* eslint-disable import/prefer-default-export */
 /* Populated by react-webpack-redux:action */
 export const GITHUB_USER_FETCH = 'GITHUB_USER_FETCH';
+export const GET_DEPARTAMENTOS = 'GET_DEPARTAMENTOS';
+export const GET_ESTABLECIMIENTOS = 'GET_ESTABLECIMIENTOS';
+export const GET_ESTABLECIMIENTOS_FETCH_DONE = 'GET_ESTABLECIMIENTOS_FETCH_DONE';
+export const GET_DEPARTAMENTOS_FETCH_DONE = 'GET_DEPARTAMENTOS_FETCH_DONE';
+export const GET_CLASE_PARTOS = 'GET_CLASE_PARTOS';
+export const GET_CLASE_PARTOS_FETCH_DONE = 'GET_CLASE_PARTOS_FETCH_DONE';

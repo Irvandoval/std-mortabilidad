@@ -20,7 +20,7 @@ class GithubForm extends Component {
     event.preventDefault();
     this.props.githubUserFetch(this.state.username);
   }
-  
+
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>

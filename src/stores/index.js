@@ -1,13 +1,13 @@
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import githubSaga from '../sagas/github-saga';
+import minsalSaga from '../sagas/minsal-saga.js';
 import reducers from '../reducers';
 
 function reduxStore() {
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(reducers, applyMiddleware(sagaMiddleware),
     window.devToolsExtension && window.devToolsExtension());
-  sagaMiddleware.run(githubSaga);
+  sagaMiddleware.run(minsalSaga);
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('../reducers', () => {
