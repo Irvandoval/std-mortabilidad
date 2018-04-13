@@ -8,12 +8,21 @@ class MortForm extends Component {
   constructor(props) {
     super(props);
     console.log(this.props);
+    this.state = {};
+    this.getMunicipios = this.getMunicipios.bind(this);
+    this.state.horas = ['01', '02', '03', '04', '05'];
   }
 
   componentWillMount() {
     this.props.getDepartamentos();
     this.props.getEstablecimientos();
     this.props.getClasePartos();
+    this.props.getTipoDocumentos();
+    this.props.getLocalPartos();
+  }
+
+  getMunicipios(event) {
+    this.props.getMunicipios(event.target.value);
   }
 
   render() {
@@ -27,7 +36,7 @@ class MortForm extends Component {
                                 <div className="bg-form">
                                     <ControlLabel>Establecimiento:</ControlLabel>{'     '}
                                     <FormControl componentClass="select" placeholder="select">
-                                        <option value="" selected disabled>Seleccione establecimiento</option>
+                                        <option value="" defaultValue disabled>Seleccione establecimiento</option>
                                         {this.props.establecimientos.map(establecimiento => 
                                         <option key={establecimiento.id} value={establecimiento.id}> {establecimiento.nombre} </option>
                                     )}
@@ -43,9 +52,11 @@ class MortForm extends Component {
                             <FormGroup controlId="formInlineName">
                                 <div className="bg-form">
                                     <ControlLabel>Local Parto:</ControlLabel>{'     '}
-                                    <FormControl componentClass="select" placeholder="select">
-                                        <option value="select">select</option>
-                                        <option value="other">...</option>
+                                    <FormControl componentClass="select" placeholder="select" defaultValue="-1">
+                                        <option value="-1">Selecciona un local</option>
+                                        {this.props.localPartos.map(localParto =>
+                                          <option key={localParto.id} value={localParto.id}> {localParto.nombre} </option>
+                                        )}
                                     </FormControl>
                                     {' '}
                                     <ControlLabel>Comunitario asistido por:</ControlLabel>{'     '}
@@ -104,8 +115,11 @@ class MortForm extends Component {
                                     <FormControl type="date" className="input-full" />{'     '}
                                     <ControlLabel >Hora:</ControlLabel>{'     '}
                                     <FormControl componentClass="select" placeholder="select">
-                                        <option value="select">select</option>
-                                        <option value="other">...</option>
+                                        <option value="select" defaultValue disabled>Hora</option>
+                                        { this.state.horas.map((hora, index) =>
+                                           <option key={index} value={index}> {hora} </option>
+                                          )
+                                        }
                                     </FormControl> {'     '} hrs{'     '}
                                     <FormControl componentClass="select" placeholder="select">
                                         <option value="select">select</option>
@@ -136,7 +150,7 @@ class MortForm extends Component {
                                     {' '}
                                     <ControlLabel >Clase de Parto:</ControlLabel>{'     '}
                                     <FormControl componentClass="select" placeholder="select">
-                                        <option value="" selected disabled>Seleccione clase de parto</option>
+                                        <option value="" defaultValue disabled>Seleccione clase de parto</option>
                                         {this.props.clasePartos.map(claseParto =>
                                           <option key={claseParto.id} value={claseParto.id}> {claseParto.nombre} </option>
                                         )}
@@ -217,13 +231,13 @@ class MortForm extends Component {
                             <FormGroup controlId="formInlineName" >
                                 <div className="bg-form">
                                     <ControlLabel>Depto/ Municipio: </ControlLabel>{'     '}
-                                    <FormControl componentClass="select" placeholder="select">
-                                        <option value="" selected disabled>Seleccione Departamento</option>
+                                    <FormControl componentClass="select" placeholder="select" onChange={this.getMunicipios} defaultValue="-1">
+                                        <option value="-1" disabled>Seleccione Departamento</option>
                                         {this.props.departamentos.map(depto => <option key={depto.id} value={depto.id}> {depto.nombre}</option>)}
                                     </FormControl>{' '}
                                     <FormControl componentClass="select" placeholder="select">
-                                        <option value="select">select</option>
-                                        <option value="other">...</option>
+                                        <option value="" defaultValue unselectable>Selecciona Municipio</option>
+                                        {this.props.municipios.map(mun => <option key={mun.id} value={mun.id}> {mun.nombre}</option>)}
                                     </FormControl>
                                     {' '}
                                 </div>
@@ -257,9 +271,9 @@ class MortForm extends Component {
                             <FormGroup controlId="formInlineName" >
                                 <div className="bg-form">
                                     <ControlLabel>Tipo de Documento:</ControlLabel>{'     '}
-                                    <FormControl componentClass="select" placeholder="select">
-                                        <option value="select">select</option>
-                                        <option value="other">...</option>
+                                    <FormControl componentClass="select" placeholder="select" defaultValue="-1">
+                                        <option value="-1" disabled>Seleccione Tipo de documento</option>
+                                        {this.props.tipoDocumentos.map(doc => <option key={doc.id} value={doc.id}> {doc.nombre}</option>)}
                                     </FormControl>{' '}
                                     <ControlLabel>Número:</ControlLabel>{'     '}
                                     <FormControl type="text" className="input-full" />
@@ -281,11 +295,17 @@ class MortForm extends Component {
 
 MortForm.propTypes = {
   getDepartamentos: PropTypes.func,
+  getTipoDocumentos: PropTypes.func,
+  getMunicipios: PropTypes.func,
   getEstablecimientos: PropTypes.func,
   getClasePartos: PropTypes.func,
+  getLocalPartos: PropTypes.func,
   establecimientos: PropTypes.arrayOf(PropTypes.object),
   departamentos: PropTypes.arrayOf(PropTypes.object),
   clasePartos: PropTypes.arrayOf(PropTypes.object),
+  municipios: PropTypes.arrayOf(PropTypes.object),
+  tipoDocumentos: PropTypes.arrayOf(PropTypes.object),
+  localPartos: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default MortForm;

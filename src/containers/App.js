@@ -16,12 +16,17 @@ import Main from '../components/App';
 /* Populated by react-webpack-redux:reducer */
 class App extends Component {
   render() {
-    const {actions, departamentos, establecimientos, clasePartos} = this.props;
+    const {actions,
+      departamentos,
+      establecimientos, clasePartos, municipios, tipoDocumentos, localPartos} = this.props;
     return (<Main
       actions={actions}
       departamentos={departamentos}
       establecimientos={establecimientos}
       clasePartos={clasePartos}
+      municipios={municipios}
+      tipoDocumentos={tipoDocumentos}
+      localPartos={localPartos}
       />);
   }
 }
@@ -33,18 +38,23 @@ class App extends Component {
 App.propTypes = {
   actions: PropTypes.shape({ getDepartamentos: PropTypes.func.isRequired }),
   departamentos: PropTypes.arrayOf(PropTypes.object),
+  municipios: PropTypes.arrayOf(PropTypes.object),
   establecimientos: PropTypes.arrayOf(PropTypes.object),
   clasePartos: PropTypes.arrayOf(PropTypes.object),
+  tipoDocumentos: PropTypes.arrayOf(PropTypes.object),
+  localPartos: PropTypes.arrayOf(PropTypes.object),
 };
 
 function mapStateToProps(state) {
   // eslint-disable-line no-unused-vars
   /* Populated by react-webpack-redux:reducer */
-  console.log(state)
   const props = {
     departamentos: state.departamentos,
     establecimientos: state.establecimientos,
     clasePartos: state.clasePartos,
+    municipios: state.municipios,
+    tipoDocumentos: state.tipoDocumentos,
+    localPartos: state.localPartos,
   };
   return props;
 }

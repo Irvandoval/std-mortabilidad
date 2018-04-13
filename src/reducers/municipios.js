@@ -3,7 +3,7 @@
  * If you change the type from object to something else, do not forget to update
  * src/container/App.js accordingly.
  */
-import {GET_DEPARTAMENTOS_FETCH_DONE} from '../actions/const';
+import {GET_MUNICIPIOS_FETCH_DONE} from '../actions/const';
 
 const initialState = [];
 
@@ -13,7 +13,7 @@ function reducer(state = initialState, action) {
 
   switch (action.type) {
 
-    case GET_DEPARTAMENTOS_FETCH_DONE: {
+    case GET_MUNICIPIOS_FETCH_DONE: {
       // Modify next state depending on the action and return it
       return action.result;
     }

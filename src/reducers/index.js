@@ -12,7 +12,16 @@ import { combineReducers } from 'redux';
 import departamentos from '../reducers/departamentos';
 import establecimientos from '../reducers/establecimientos';
 import clasePartos from '../reducers/clasePartos';
+import municipios from '../reducers/municipios';
+import tipoDocumentos from '../reducers/tipoDocumentos';
+import localPartos from '../reducers/localPartos';
 
-const reducers = { departamentos, establecimientos, clasePartos};
+const reducers = { departamentos,
+  establecimientos,
+  clasePartos,
+  municipios,
+  tipoDocumentos,
+  localPartos,
+};
 const combined = combineReducers(reducers);
 module.exports = combined;
