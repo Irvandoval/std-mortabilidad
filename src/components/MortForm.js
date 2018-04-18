@@ -10,6 +10,7 @@ class MortForm extends Component {
     this.state = {};
     this.getMunicipios = this.getMunicipios.bind(this);
     this.state.horas = ['01', '02', '03', '04', '05'];
+	this.state.minutos = ['00', '01' , '02', '03', '04']
   }
 
   componentWillMount() {
@@ -98,8 +99,12 @@ class MortForm extends Component {
                                 <div className="bg-form">
                                     <ControlLabel >Sexo:</ControlLabel>{'     '}
                                     <Radio name="radioGroup" >
-                                        A veces
+                                        Femenino
+                            </Radio> {'     '}
+							<Radio name="radioGroup" >
+                                        Masculino
                             </Radio>
+
                                 </div>
                             </FormGroup>{' '}
                             <FormGroup controlId="formInlineName">
@@ -121,8 +126,11 @@ class MortForm extends Component {
                                         }
                                     </FormControl> {'     '} hrs{'     '}
                                     <FormControl componentClass="select" placeholder="select">
-                                        <option value="select">select</option>
-                                        <option value="other">...</option>
+                                        <option value="select" defaultValue disabled>Minuto</option>
+                                        { this.state.minutos.map((minuto, index) =>
+                                           <option key={index} value={index}> {minuto} </option>
+                                          )
+                                        }
                                     </FormControl> {'     '} min
 
                                 </div>
