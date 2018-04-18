@@ -7,7 +7,6 @@ import {
 class MortForm extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
     this.state = {};
     this.getMunicipios = this.getMunicipios.bind(this);
     this.state.horas = ['01', '02', '03', '04', '05'];
@@ -37,7 +36,7 @@ class MortForm extends Component {
                                     <ControlLabel>Establecimiento:</ControlLabel>{'     '}
                                     <FormControl componentClass="select" placeholder="select">
                                         <option value="" defaultValue disabled>Seleccione establecimiento</option>
-                                        {this.props.establecimientos.map(establecimiento => 
+                                        {this.props.establecimientos.map(establecimiento =>
                                         <option key={establecimiento.id} value={establecimiento.id}> {establecimiento.nombre} </option>
                                     )}
                                     </FormControl>
